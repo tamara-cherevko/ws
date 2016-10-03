@@ -3,7 +3,10 @@ if ('serviceWorker' in window.navigator) {
     register('./sw.js').then((registration) => {
         var urlsToCache = ['/app.js'];
 
+        console.log(self);
+
         self.addEventListener('install', function(event) {
+            console.log(1);
             event.waitUntil(
                 caches.open(CACHE_NAME)
                     .then(function(cache) {
@@ -14,6 +17,7 @@ if ('serviceWorker' in window.navigator) {
         });
 
         self.addEventListener('fetch', function(event) {
+            console.log(2);
             event.respondWith(
                 caches.match(event.request)
                     .then(function(response) {
