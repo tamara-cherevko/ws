@@ -1,11 +1,11 @@
-var urlsToCache = ['/app.js'];
+var urlsToCache = ['/app.js'],
+    CACHE_NAME = 'my-site-cache-v1';
 
 self.addEventListener('install', function(event) {
-    console.log(1);
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(function(cache) {
-                console.log('Opened cache');
+                console.log('Opened cache', cache);
                 return cache.addAll(urlsToCache);
             })
     );
